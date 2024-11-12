@@ -1,4 +1,4 @@
-package com.launderup.LaunderUp_Backend_Client_Side;
+package com.launderup.LaunderUp_Backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

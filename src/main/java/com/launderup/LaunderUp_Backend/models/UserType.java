@@ -1,2 +1,6 @@
-package com.launderup.LaunderUp_Backend.models;public enum UserType {
+package com.launderup.LaunderUp_Backend.models;
+
+public enum UserType {
+    CUSTOMER,
+    PARTNER
 }
