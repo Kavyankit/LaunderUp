@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LaunderUpClientSideApplication {
+public class LaunderUpBackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LaunderUpClientSideApplication.class, args);
+		SpringApplication.run(LaunderUpBackendApplication.class, args);
 	}
 
 }
