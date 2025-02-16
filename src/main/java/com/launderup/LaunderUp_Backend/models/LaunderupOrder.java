@@ -1,41 +1,72 @@
-package com.launderup.LaunderUp_Backend.dtos;
+package com.launderup.LaunderUp_Backend.models;
 
-import com.launderup.LaunderUp_Backend.models.Address;
-import com.launderup.LaunderUp_Backend.models.OrderStatus;
-import com.launderup.LaunderUp_Backend.models.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDTO {
+@Table("orders")
+public class Order {
+    @Id
     private Long orderId;
+    @Column
     private Long customerId;
+    @Column
     private Long partnerId; // Nullable until a partner is assigned
+    @Column
     private OrderStatus status;
+    @Column("scheduled_pickup_time")
     private LocalDateTime scheduledPickupTime;
+    @Column("scheduled_delivery_time")
     private LocalDateTime scheduledDeliveryTime;
+    @Column
     private Double totalCost;
+    @Column("payment_status")
     private PaymentStatus paymentStatus;
+    @Column("payment_details")
+    private String paymentDetails;
+    @Column
     private Address pickupAddress;
+    @Column
     private Address deliveryAddress;
+    @CreatedDate
+    @Column
     private LocalDateTime orderCreatedAt;
+    @Column
     private LocalDateTime orderUpdatedAt;
-
+    @Column
     private boolean washingServiceNeeded;
+    @Column
     private boolean ironingServiceNeeded;
+    @Column
     private boolean dryCleaningServiceNeeded;
+    @Column
     private boolean steamingServiceNeeded;
+    @Column
     private boolean washingAndIroningServiceNeeded;
 
+    @Column
     private Double washingQuantity;
+    @Column
     private Double ironingQuantity;
+    @Column
     private Double dryCleaningQuantity;
+    @Column
     private Double steamingQuantity;
+    @Column
     private Double washingAndIroningQuantity;
 
+    public void reschedule(LocalDateTime newPickupTime, LocalDateTime newDeliveryTime) {
+        this.scheduledPickupTime = newPickupTime;
+        this.scheduledDeliveryTime = newDeliveryTime;
+        this.orderUpdatedAt = LocalDateTime.now(); // Update the timestamp
+    }
 
     public Long getOrderId() {
         return this.orderId;
@@ -212,4 +243,5 @@ public class OrderDTO {
     public void setWashingAndIroningQuantity(Double washingAndIroningQuantity) {
         this.washingAndIroningQuantity = washingAndIroningQuantity;
     }
+
 }
